@@ -8,7 +8,7 @@ p: Permute.java
 data:
 	python gen.py
 clean:
-	rm -rf *.in
-	rm -rf *.out
 	rm -rf 1-1 1-2
 	rm -rf *.class
+	rm -rf *.in
+	rm -rf *.out
