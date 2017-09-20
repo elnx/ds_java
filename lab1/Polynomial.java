@@ -1,30 +1,34 @@
+import java.util.Formatter;
 public class Polynomial {
-    // create a polynomial
     Term head;
+    // create a polynomial
     public Polynomial(Term firstTerm) {
-        this.head = firstTerm;
+        this.head = new Term(0, 0);
+        head.next = firstTerm;
     }
     // get the first term
     public Term getFirst() {
-        return this.head;
+        return this.head.next;
     }
     // set the first term
     public void setFirst(Term first) {
-        this.head = first;
+        this.head.next = first;
     }
     // add a single term to the polynomial
     public void addTerm(Term term) {
         Term i = this.head;
-        Term prev = null;
-        while (i.exp > term.exp) 
+        while (i.next.coef > term.coef)
             i = i.next;
-        if (i.exp == term.exp)
-            i.coef += term.coef;
-        else 
-            i.setNext(term);
+        if (i.next.coef == term.coef)
+            i.next.coef += term.coef;
+        else {
+            term.next = i.next;
+            i.next = term;
+        }
     }
     // add another polynomial, return the sum
     public Polynomial add(Polynomial another) {
+        return null;
     }
     // convert to string representation
     // example: 4.0x^3+3.2x^2-2.1x^1+1.0x^0
@@ -32,10 +36,10 @@ public class Polynomial {
     public String toString() {
         String s = "";
         Formatter fmt = new Formatter();
-        for (Term t = head; t != null; t = t.getNext()) {
+        for (Term t = head; t != null; t = t.next) {
             s += fmt.format(
-                "%c%fx^%d", 
-                (t != head && t.coef > 0) ? '+':'',
+                "%c%.1fx^%d", 
+                (t != head && t.coef > 0) ? '+':'\0',
                 t.coef,
                 t.exp
             );
@@ -45,13 +49,7 @@ public class Polynomial {
     // write your own code to test your implementation
     public static void main(String[] args) {
         Term a = new Term(4, 3);
-        Term b = new Term(3.2, 2);
-        Term c = new Term(-2.1, 1);
-        Term d = new Term(1, 0);
         Polynomial p = new Polynomial(a);
-        p.addTerm(b);
-        p.addTerm(c);
-        p.addTerm(d);
         System.out.println(p);
     }
 }
