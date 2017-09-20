@@ -17,6 +17,8 @@ public class Polynomial {
     }
     // add a single term to the polynomial
     public void addTerm(Term term) {
+        if (term == null)
+            return;
         Term i = this.head;
         while (i.next != null && i.next.exp > term.exp) {
             i = i.next;
