@@ -5,12 +5,15 @@ public class Term {
     public Term(double coef, int exp) {
         this.coef = coef;
         this.exp = exp;
+        this.next = null;
     }
     public double getCoefficient() {
         return this.coef;
     }
     public void setCoefficient(double coef) {
-        this.coef = coef;
+        // never handle coef 0
+        if (coef != 0)
+            this.coef = coef;
     }
     public int getExponent() {
         return this.exp;
@@ -19,11 +22,10 @@ public class Term {
         this.exp = exp;
     }
     public Term getNext() {
-        return next;
+        return this.next;
     }
     public void setNext(Term next) {
         this.next = next;
     }
-
 }
 
