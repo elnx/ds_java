@@ -6,7 +6,7 @@ public class DLNode {
     DLNode(int element) {
         this.element = element;
         this.prev = null;
-        this.prev = null;
+        this.next = null;
 	}
     // get the value of the element 
     public int getElement() {
