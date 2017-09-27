@@ -1,3 +1,5 @@
 # ds_java
 
-Learn data structure with Java.
+Learn Data Structure with Java.
+
+Learn Java with Data Structure.
