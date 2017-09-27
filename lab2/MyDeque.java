@@ -5,7 +5,7 @@ public class MyDeque {
     DLNode last;
     //create a deque 
     MyDeque(DLNode node) {
-        int size = 1;
+        this.size = 1;
         this.first = node;
         this.last = node;
         node.prev = null;
@@ -23,7 +23,7 @@ public class MyDeque {
         this.first.prev = node;
         this.first = node;
         node.prev = null;
-        ++size;
+        ++this.size;
     }
     //remove and return the first node 
     public DLNode removeFirst() {
@@ -47,22 +47,31 @@ public class MyDeque {
     }
     //insert a node at the end of deque 
     public void insertLast(DLNode node) {
+        if (this.isEmpty()) {
+            this.first = node;
+            this.last = node;
+            this.size = 1;
+            node.prev = null;
+            node.next = null;
+            return;
+        }
         this.last.next = node;
         node.prev = this.last;
         node.next = null;
         this.last = node;
+        ++this.size;
     }
     //remove and return the last node 
     public DLNode removeLast() {
         if (this.isEmpty())
             return null;
         if (this.size == 1) {
-            this.size = 0;
             DLNode tmp = this.last;
             this.first = null;
             this.last = null;
             tmp.prev = null;
             tmp.next = null;
+            this.size = 0;
             return tmp;
         }
         DLNode tmp = this.last;
