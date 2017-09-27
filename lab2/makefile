@@ -1,10 +1,14 @@
-all: dlnode deque queue stack testcase
-	java Testcase
-dlnode:
+all: Main.class
+	java Main
+DLNode.class:
 	javac DLNode.java
-deque:
+MyDeque.class:
 	javac MyDeque.java
-queue:
+QueueAdaptor.class: MyDeque.class
 	javac MyQueue.java
-stack:
+	javac QueueAdaptor.java
+StackAdaptor.class: MyDeque.class
 	javac MyStack.java
+	javac StackAdaptor.java
+Main.class: QueueAdaptor.class StackAdaptor.class
+	javac Main.java
