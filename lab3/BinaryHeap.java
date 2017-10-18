@@ -23,13 +23,15 @@ public class BinaryHeap {
         heap[i] = x;
     }
     //return the minimum element
-    public int findMin() throws EmptyException {
+    public int findMin() throws Exception {
+        if (this.isEmpty())
+            throw new Exception("heap is empty");
         return heap[1];
     }
     //remove and return the minimum element
-    public int deleteMin() throws EmptyException {
+    public int deleteMin() throws Exception {
         if (this.isEmpty())
-            throws new EmptyException("heap is empty");
+            throw new Exception("heap is empty");
         int min = heap[1];
         heap[1] = heap[this.size];
         --this.size;

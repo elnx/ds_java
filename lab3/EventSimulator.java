@@ -1,3 +1,4 @@
+import java.util.*;
 public class EventSimulator {
     //create an event simulator
     //tellers determine how many customers can be serviced at the same time
@@ -19,25 +20,39 @@ public class EventSimulator {
 			return;
 		BinaryHeap line = new BinaryHeap(this.tellers);
 		int leave = 0;
-		for (int i = 0, int tick = 0; i < size; ++tick) {
+		int min = 0;
+		for (int i = 0, tick = 0; i < size; ++tick) {
 			if (line.isFull()) {
-				if (line.findMin() == tick) {
-					line.deleteMin();
-					leave = this.arrivalLine[i].arrival + this.arrivalLine[i].serivce;
+				while (min == tick && i < size) {
+					try {
+						line.deleteMin();
+					} catch (Exception e) {
+					}
+					leave = this.arrivalLine.get(i).arrival == tick ? this.arrivalLine.get(i).arrival + this.arrivalLine.get(i).service : this.arrivalLine.get(i).service + tick;
 					line.insert(leave);
-					this.alarm(tick, this.arrivalLine[i].arrival, leave);
+					try {
+						min = line.findMin(); //update the earliest leave time
+					} catch (Exception e) {
+					}
+					this.alarm(tick, this.arrivalLine.get(i).arrival, leave);
+					++i;
 				}
 			} else {
-				leave = this.arrivalLine[i].arrival + this.arrivalLine[i].serivce;
+				leave = this.arrivalLine.get(i).arrival == tick ? this.arrivalLine.get(i).arrival + this.arrivalLine.get(i).service : this.arrivalLine.get(i).service + tick;
 				line.insert(leave);
-				this.alarm(tick, this.arrivalLine[i].arrival, leave);
+				try {
+					min = line.findMin(); //update the earliest leave time
+				} catch (Exception e) {
+				}
+				this.alarm(tick, this.arrivalLine.get(i).arrival, leave);
+				++i;
 			}
 		}
 		return;
 	}
 	public void alarm(int tick, int arrival, int leave) {
 		System.out.printf(
-			"Tick %d: process customer who arrival at tick %d and leave at tick %d", 
+			"Tick %d: process customer who arrival at tick %d and leave at tick %d\n", 
 			tick,
 			arrival,
 			leave

@@ -4,7 +4,7 @@ public class Customer {
     // create a Customer
     public Customer (int arrival, int service) {
         this.arrival = arrival;
-        this.service = serivce;
+        this.service = service;
     }
     // get the arrival time
     public int getArrival() {
