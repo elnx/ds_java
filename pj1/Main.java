@@ -9,17 +9,18 @@ import java.io.RandomAccessFile;
 import java.io.Reader;  
 public class Main {
     public static void main(String[] args) {
-        String filename = args[1];
+        String filename = args[0];
         File f = new File(filename);
+        Reader reader = null;
         try {
-            Reader reader = new InputStreamReader(new FileInputStream(f));
+            reader = new InputStreamReader(new FileInputStream(f));
             int tmp;
             while ((tmp = reader.read()) != -1) {
                 System.out.printf("get: %02x\n", tmp);
             }
+            reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        
     }
 }
