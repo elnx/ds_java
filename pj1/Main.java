@@ -6,7 +6,6 @@ import java.io.FileReader;
 import java.io.IOException;  
 import java.io.InputStream;  
 import java.io.InputStreamReader;  
-import java.io.RandomAccessFile;  
 import java.io.Reader;  
 public class Main {
     public static void main(String[] args) {
@@ -23,15 +22,13 @@ public class Main {
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ArrayList<Tree> a = new ArrayList<Tree> ();
+        PriorityQueue<Tree> q = new PriorityQueue<Tree> ();
         for (int i = 0; i < 256; ++i) {
             if (list[i] != 0)
-                a.add(new Tree(i, list[i]));
+                q.add(new Tree(i, list[i]));
         }
-        Tree[] q = new Tree[a.size()];
-        a.toArray(q);
-        for (int i = 0; i < q.length; ++i) {
-            System.out.printf("%02x -> %d\n", q[i].data, q[i].count);
-        }
+        Huffman huffman = new Huffman(q);
+        String compress = huffman.encode();
+        String decompress = huffman.decode();
     }
 }
