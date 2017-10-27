@@ -17,19 +17,16 @@ public class Main {
         try {
             reader = new InputStreamReader(new FileInputStream(f));
             int tmp;
-            while ((tmp = reader.read()) != -1) {
-                //System.out.printf("read: 0x%02x\n", tmp);
+            while ((tmp = reader.read()) != -1)
                 list[tmp] += 1;
-            }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
         }
-        ArrayList<Tree> a = new ArrayList<Tree>();
+        ArrayList<Tree> a = new ArrayList<Tree> ();
         for (int i = 0; i < 256; ++i) {
-            if (list[i] != 0) {
+            if (list[i] != 0)
                 a.add(new Tree(i, list[i]));
-            }
         }
         Tree[] q = new Tree[a.size()];
         a.toArray(q);
