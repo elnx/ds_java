@@ -15,7 +15,7 @@ public class Tree {
         this.lc = null;
         this.rc = null;
     }
-    public isLeaf() {
+    public boolean isLeaf() {
         return (lc == null) && (rc == null);
     }
 }

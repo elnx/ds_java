@@ -1,3 +1,4 @@
+import java.util.*;
 import java.io.BufferedReader;  
 import java.io.File;  
 import java.io.FileInputStream;  
@@ -12,15 +13,28 @@ public class Main {
         String filename = args[0];
         File f = new File(filename);
         Reader reader = null;
+        int[] list = new int[256];
         try {
             reader = new InputStreamReader(new FileInputStream(f));
             int tmp;
             while ((tmp = reader.read()) != -1) {
-                System.out.printf("get: %02x\n", tmp);
+                //System.out.printf("read: 0x%02x\n", tmp);
+                list[tmp] += 1;
             }
             reader.close();
         } catch (Exception e) {
             e.printStackTrace();
+        }
+        ArrayList<Tree> a = new ArrayList<Tree>();
+        for (int i = 0; i < 256; ++i) {
+            if (list[i] != 0) {
+                a.add(new Tree(i, list[i]));
+            }
+        }
+        Tree[] q = new Tree[a.size()];
+        a.toArray(q);
+        for (int i = 0; i < q.length; ++i) {
+            System.out.printf("%02x -> %d\n", q[i].data, q[i].count);
         }
     }
 }
