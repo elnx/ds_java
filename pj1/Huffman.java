@@ -16,7 +16,7 @@ public class Huffman {
     public void probe(Tree root, String code) {
         if (root.isLeaf()) {
             this.map[root.data] = code;
-            System.out.printf("coding, %02x : %d -> %s\n", root.data, root.count, code);
+            System.out.printf("map[%02x, %d] -> %s\n", root.data, root.count, code);
             return;
         }
         String lcode = code + "0";

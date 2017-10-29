@@ -40,7 +40,7 @@ public class Main {
         Huffman huffman = new Huffman(q);
         String compress = huffman.encode(text);
         System.out.println(compress);
-        String decompress = huffman.decode(compress);
-        System.out.printf(decompress);
+        //String decompress = huffman.decode(compress);
+        //System.out.printf(decompress);
     }
 }
