@@ -19,7 +19,7 @@ public class Main {
             int tmp;
             while ((tmp = reader.read()) != -1) {
                 list[tmp] += 1;
-                text += tmp;
+                text += (char)tmp;
             }
             reader.close();
         } catch (Exception e) {
@@ -41,6 +41,6 @@ public class Main {
         String compress = huffman.encode(text);
         System.out.println(compress);
         String decompress = huffman.decode(compress);
-        System.out.println(decompress);
+        System.out.printf(decompress);
     }
 }

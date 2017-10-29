@@ -25,9 +25,27 @@ public class Huffman {
         probe(root.rc, rcode);
     }
     public String encode(String text) {
-        return "";
+        String compress = "";
+        for (int i = 0; i < text.length(); ++i) {
+            compress += this.map[(int)text.charAt(i)];
+        }
+        return compress;
     }
-    public String decode(String text) {
-        return "";
+    public String decode(String compressedText) {
+        Tree p = this.root;
+        String text = "";
+        for (int i = 0; i < compressedText.length();) {
+            while (!p.isLeaf()) {
+                if (compressedText.charAt(i) == '0') {
+                    p = p.lc;
+                } else {
+                    p = p.rc;
+                }
+                ++i;
+            }
+            text += (char)p.data;
+            p = this.root;
+        }
+        return text;
     }
 }
