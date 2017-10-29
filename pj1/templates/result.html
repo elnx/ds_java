@@ -1,0 +1,16 @@
+<head>
+	<meta charset="utf-8">
+	<title>Huffman Encode Result</title>
+	<body>
+		<div class="container">
+			<div form="userform">
+				{{ encoded }}
+			</div>
+			<form action="decompress" method="POST" accept-charset="utf-8" id="userform">
+				<input type="hidden" name="my_uuid" value="{{ my_uuid }}"/>
+			<input type="submit" value="Decode"/>
+			</form>
+		</div>
+	</body>
+</head>
+</html>

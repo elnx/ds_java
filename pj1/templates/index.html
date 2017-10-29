@@ -3,10 +3,10 @@
 	<meta charset="utf-8">
 	<title>huffman</title>
 	<body>
-		<div>
-			<form action="compress" method="POST" accept-charset="utf-8">
-				<input type="textarea" value="value" name="content" id="content"/>
-				<input type="submit" value="Submit"/>
+		<div class="container">
+			<textarea name="content" id="content" form="userform" placeholder="input your content"></textarea>
+			<form action="compress" method="POST" accept-charset="utf-8" id="userform">
+			<input type="submit" value="Submit"/>
 			</form>
 		</div>
 	</body>

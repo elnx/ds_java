@@ -16,7 +16,8 @@ app = Flask(__name__)
 def result():
     my_uuid = request.args['my_uuid']
     with open(zip_path % my_uuid, 'r') as f:
-        return f.read()
+        content = f.read()
+    return render_template('result.html', encoded=content, my_uuid=my_uuid)
 
 @app.route('/compress', methods=['POST'])
 def do_compress():
@@ -35,12 +36,12 @@ def do_compress():
     subprocess.call(cmd, shell=True)
     return redirect(url_for('.result', my_uuid=fid))
 
-@app.route('/decompress', methods=['GET'])
+@app.route('/decompress', methods=['POST'])
 def decompress():
-    my_uuid = request.args.get('uuid')
+    my_uuid = request.form['my_uuid']
     if os.path.exists('data/' + my_uuid):
         with open(text_path % my_uuid, 'r') as f:
-            return f.read()
+            return render_template("decode.html", text=f.read())
     else:
         return "Not Found"
 
