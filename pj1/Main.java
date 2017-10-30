@@ -11,17 +11,17 @@ public class Main {
     public static void main(String[] args) {
         String filename = args[0];
         File f = new File(filename);
-        Reader reader = null;
+        InputStream in = null;
         int[] list = new int[256];
         String text = "";
         try {
-            reader = new InputStreamReader(new FileInputStream(f));
+            in = new FileInputStream(f);
             int tmp;
-            while ((tmp = reader.read()) != -1) {
+            while ((tmp = in.read()) != -1) {
                 list[tmp] += 1;
                 text += (char)tmp;
             }
-            reader.close();
+            in.close();
         } catch (Exception e) {
             e.printStackTrace();
         }

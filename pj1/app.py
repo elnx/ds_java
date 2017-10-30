@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 from flask import render_template, flash, redirect, request, send_from_directory, url_for
 import uuid
 import os
@@ -29,8 +30,8 @@ def do_compress():
     if not os.path.exists(target_dir):
         os.makedirs(target_dir)
     
-    with open(text_, 'w') as f:
-        f.write(content)
+    with open(text_, 'wb') as f:
+        f.write(content.encode('utf8'))
 
     cmd = huffman_cmd % (text_, zip_)
     subprocess.call(cmd, shell=True)
